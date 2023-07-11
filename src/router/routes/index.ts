@@ -12,6 +12,10 @@ const routeModuleList: AppRouteModule[] = [];
 
 // 加入到路由集合中
 Object.keys(modules).forEach((key) => {
+  // 菜单太多，忽略 Demo 目录下的相关菜单
+  if (key.indexOf('demo') > -1) {
+    return;
+  }
   const mod = (modules as Recordable)[key].default || {};
   const modList = Array.isArray(mod) ? [...mod] : [mod];
   routeModuleList.push(...modList);
